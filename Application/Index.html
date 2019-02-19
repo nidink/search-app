@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.7/angular.min.js"></script>
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<link href="css\style.css" type="text/css" rel="stylesheet">
+	<script src="scripts\app.js"></script>
+	<title>Search</title>
+</head>
+<body ng-app="srch-app">
+	<div class="container" ng-controller="mainController">
+		<br/>
+		<div class="row justify-content-center">
+			<div class="col-12 col-md-10 col-lg-10">
+				<form class="frm-container card card-sm">
+					<div class="card-body row no-gutters align-items-center">
+		                <div class="input-group">
+		                	<span class="label label-default">First Name : </span>
+		                    <input class="form-control form-control-lg mr-2" type="search" placeholder="Enter First Name" ng-model="firstName" required>
+		                </div>
+		            </div>
+		            <div class="card-body row no-gutters align-items-center">
+		                <div class="input-group">
+		                	<span class="label label-default">Last Name : </span>
+		                    <input class="form-control form-control-lg mr-2" type="search" placeholder="Enter Last Name" ng-model="lastName" required>
+		                </div>
+		            </div>
+		            <div class="card-body row no-gutters align-items-center">
+		            <!--end of col-->
+		                <div class="">
+		                    <span class="srch-btn btn btn-lg btn-primary ml-2" ng-bind="srchTxt" ng-click="searchUserRecords()"></span>
+		                </div>
+		            </div>
+				</form>
+				<div class="user-records-section">
+					<div class="loading-screen-section"ng-if="displayLoading">
+						Loading......
+					</div>
+					<!--<div class="user-record" ng-repeat="item in userData">
+						First Name: {{item.first_name}} | LastName: {{item.last_name}}
+					</div>-->
+					<table class="table table-striped" ng-if="userData.length > 0">
+					    <thead>
+					      <tr>
+					        <th>List No.</th>
+					        <th>Exam No.</th>
+					        <th>First Name</th>
+					        <th>Last Name</th>
+					        <th>List Agency Desc.</th>
+					        <th>List Title Desc.</th>
+					        <th>Published Date</th>
+					      </tr>
+					    </thead>
+					    <tbody>
+					      <tr ng-repeat="item in userData">
+					        <td ng-bind="item.list_no"></td>
+					        <td ng-bind="item.exam_no"></td>
+					        <td ng-bind="item.first_name"></td>
+					        <td ng-bind="item.last_name"></td>
+					        <td ng-bind="item.list_agency_desc"></td>
+					        <td ng-bind="item.list_title_desc"></td>
+					        <td ng-bind="item.published_date | myFormat"></td>
+					      </tr>				      
+					    </tbody>
+					  </table>
+				</div>
+				
+			</div>
+		</div>
+	</div>
+	
+</body>
+</html>
